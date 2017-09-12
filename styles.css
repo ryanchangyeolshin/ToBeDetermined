@@ -2,3 +2,104 @@
   box-sizing: border-box;
   margin: 0;
 }
+
+body {
+  /* Typography */
+  font-family: 'Source Sans Pro', sans-serif;
+
+  /* Visuals */
+  background-color: #d5d4d5;
+}
+
+.container {
+  /* Positioning */
+  width: 1000px;
+
+  /* Box Model */
+  border-radius: 20px;
+  margin: 70px auto;
+  padding: 100px 150px 200px;
+
+  /* Visuals */
+  background-color: #000080;
+  color: white;
+}
+
+.header {
+  /* Box Model */
+  margin-bottom: 30px;
+
+  /* Typography */
+  font-size: 70px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+.slogan {
+  /* Box Model */
+  margin-bottom: 80px;
+
+  /* Typography */
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+.user-input {
+  /* Positioning */
+  float: left;
+  width: calc(50% - 20px);
+
+  /* Box Model */
+  margin-right: 40px;
+}
+
+label {
+  /* Box Model */
+  display: block;
+  margin-bottom: 5px;
+
+  /* Typography */
+  letter-spacing: 5px;
+}
+
+.inputs {
+  /* Positioning */
+  width: 100%;
+
+  /* Box Model */
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.buttons {
+  /* Positioning */
+  float: left;
+  width: calc(50% - 40px);
+
+  /* Box Model */
+  margin-top: 75px;
+}
+
+.button {
+  /* Box Model */
+  border: 2px solid #d9d6d9;
+  border-radius: 10px;
+  padding: 20px 30px;
+
+  /* Typography */
+  font-size: 15px;
+  font-weight: 700;
+
+  /* Visuals */
+  color: white;
+}
+
+#submit {
+  /* Visuals */
+  background-color: #89e289;
+}
