@@ -23,9 +23,24 @@ function renderList(choiceList, choice) {
   var $userName = document.querySelector('#user')
   if ($userChoice.value !== '' && $userName.value !== '') {
     choice = document.createElement('li')
+    var $removeButton = document.createElement('button')
+
     choice.setAttribute('class', 'list')
+    $removeButton.setAttribute('class', 'waves-effect waves-circle waves-light btn-floating secondary-content')
+    $removeButton.setAttribute('id', 'remove')
+
     choice.textContent = $userChoice.value
+    $removeButton.textContent = 'X'
+
+    $userChoice.value = ''
+    $userName.value = ''
+
     choiceList.appendChild(choice)
+    choice.appendChild($removeButton)
+
+    $removeButton.addEventListener('click', function (e) {
+      choiceList.removeChild(choice)
+    })
   }
 }
 

@@ -98,3 +98,13 @@ body {
   /* Visuals */
   background-color: #dd4230;
 }
+
+#remove {
+  /* Positioning */
+  position: relative;
+  right: -70px;
+  bottom: 10px;
+
+  /* Visuals */
+  background-color: #dd4230;
+}
