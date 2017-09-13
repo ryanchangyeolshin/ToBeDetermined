@@ -5,7 +5,7 @@
 
 body {
   /* Typography */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 
   /* Visuals */
   background-color: #d5d4d5;
@@ -18,19 +18,25 @@ body {
   /* Box Model */
   border-radius: 20px;
   margin: 70px auto;
-  padding: 100px 150px 200px;
+  padding: 50px 150px 200px;
 
   /* Visuals */
-  background-color: #000080;
+  background-color: #3d81f7;
   color: white;
+}
+
+.introduction-header {
+  /* Positioning */
+  height: 120px;
 }
 
 .header {
   /* Box Model */
+  padding: 0 20px;
   margin-bottom: 30px;
 
   /* Typography */
-  font-size: 70px;
+  font-size: 40px;
   font-weight: 700;
   letter-spacing: 5px;
   text-align: center;
@@ -38,7 +44,7 @@ body {
 
 .slogan {
   /* Box Model */
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 
   /* Typography */
   font-size: 20px;
@@ -47,59 +53,63 @@ body {
   text-align: center;
 }
 
-.user-input {
-  /* Positioning */
-  float: left;
-  width: calc(50% - 20px);
-
+.choice-list {
   /* Box Model */
-  margin-right: 40px;
+  padding: 30px 0;
 }
 
-label {
-  /* Box Model */
-  display: block;
-  margin-bottom: 5px;
-
-  /* Typography */
-  letter-spacing: 5px;
-}
-
-.inputs {
-  /* Positioning */
-  width: 100%;
-
+.list {
   /* Box Model */
   border-radius: 10px;
-  display: block;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 30px 90px 30px 20px;
+
+  /* Typography */
+  font-size: 15px;
+  font-weight: 400;
+
+  /* Visuals */
+  background-color: white;
+  color: black;
+
+  /* Misc */
+  list-style: none;
 }
 
 .buttons {
   /* Positioning */
   float: left;
-  width: calc(50% - 40px);
+  width: calc(100% - 40px);
+  height: 100%;
 
   /* Box Model */
-  margin-top: 75px;
-}
-
-.button {
-  /* Box Model */
-  border: 2px solid #d9d6d9;
-  border-radius: 10px;
-  padding: 20px 30px;
+  margin: 30px auto;
 
   /* Typography */
-  font-size: 15px;
-  font-weight: 700;
-
-  /* Visuals */
-  color: white;
+  text-align: center;
 }
 
 #submit {
+  /* Box Model */
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+#clear {
+  /* Box Model */
+  border-radius: 10px;
+  margin-right: 10px;
+
   /* Visuals */
-  background-color: #89e289;
+  background-color: #dd4230;
+}
+
+#remove {
+  /* Positioning */
+  position: relative;
+  right: -70px;
+  bottom: 10px;
+
+  /* Visuals */
+  background-color: #dd4230;
 }
