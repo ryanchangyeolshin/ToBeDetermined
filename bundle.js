@@ -26,7 +26,6 @@ function renderList(choiceList, choice) {
   if ($userChoice.value !== '' && $userName.value !== '') {
     var $removeButton = document.createElement('button')
 
-    choice.setAttribute('class', 'list col s12')
     $removeButton.setAttribute('class', 'waves-effect waves-circle waves-light btn-floating secondary-content')
     $removeButton.setAttribute('id', 'remove')
 
@@ -65,6 +64,7 @@ function randomizeList(choiceList, choices) {
 $submitButton.addEventListener('click', function (e) {
   var $choiceList = document.querySelector('.choice-list')
   var $choice = document.createElement('li')
+  $choice.setAttribute('class', 'list col s12 animated bounceInUp')
   renderList($choiceList, $choice)
 })
 

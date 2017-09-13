@@ -75,6 +75,7 @@ body {
   /* Misc */
   line-height: 40px;
   list-style: none;
+  animation-name: bounceInUp;
 }
 
 .buttons {
