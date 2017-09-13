@@ -105,6 +105,15 @@ body {
   background-color: #dd4230;
 }
 
+#randomize {
+  /* Box Model */
+  border-radius: 10px;
+  margin-right: 10px;
+
+  /* Visuals */
+  background-color: #f16b00;
+}
+
 #remove {
   /* Positioning */
   position: relative;
