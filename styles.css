@@ -25,6 +25,11 @@ body {
   color: white;
 }
 
+.introduction-header {
+  /* Positioning */
+  height: 120px;
+}
+
 .header {
   /* Box Model */
   padding: 0 20px;
@@ -39,7 +44,7 @@ body {
 
 .slogan {
   /* Box Model */
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   /* Typography */
   font-size: 20px;
