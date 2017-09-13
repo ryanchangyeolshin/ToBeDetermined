@@ -38,15 +38,23 @@ function renderList($unorderedList, $list) {
     $list.appendChild($removeButton)
 
     $removeButton.addEventListener('click', function (e) {
-      $unorderedList.removeChild($list)
+      $list.setAttribute('class', 'choice animated fadeOut')
+      setTimeout(function () {
+        $unorderedList.removeChild($list)
+      }, 1000)
     })
   }
 }
 
 function clearList($unorderedList, $lists) {
   for (var i = 0; i < $lists.length; i++) {
-    $unorderedList.removeChild($lists[i])
+    $lists[i].setAttribute('class', 'choice animated fadeOut')
   }
+  setTimeout(function () {
+    for (var i = 0; i < $lists.length; i++) {
+      $unorderedList.removeChild($lists[i])
+    }
+  }, 1000)
 }
 
 function randomizeList($unorderedList, $lists) {
@@ -54,9 +62,17 @@ function randomizeList($unorderedList, $lists) {
 
   for (var i = 0; i < $lists.length; i++) {
     if (index !== i) {
-      $unorderedList.removeChild($lists[i])
+      $lists[i].setAttribute('class', 'choice animated fadeOut')
     }
   }
+
+  setTimeout(function () {
+    for (var i = 0; i < $lists.length; i++) {
+      if (index !== i) {
+        $unorderedList.removeChild($lists[i])
+      }
+    }
+  }, 1000)
 }
 
 $submitButton.addEventListener('click', function (e) {
