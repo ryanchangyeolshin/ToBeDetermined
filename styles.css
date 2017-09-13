@@ -62,7 +62,7 @@ body {
   /* Box Model */
   border-radius: 10px;
   margin-bottom: 10px;
-  padding: 30px 90px 30px 20px;
+  padding: 30px 90px 30px 20px !important;
 
   /* Typography */
   font-size: 15px;
@@ -73,6 +73,7 @@ body {
   color: black;
 
   /* Misc */
+  line-height: 40px;
   list-style: none;
 }
 
@@ -108,7 +109,7 @@ body {
   /* Positioning */
   position: relative;
   right: -70px;
-  bottom: 10px;
+  bottom: 0;
 
   /* Visuals */
   background-color: #dd4230;

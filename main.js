@@ -22,10 +22,9 @@ function renderList(choiceList, choice) {
   var $userChoice = document.querySelector('#user-choice')
   var $userName = document.querySelector('#user')
   if ($userChoice.value !== '' && $userName.value !== '') {
-    choice = document.createElement('li')
     var $removeButton = document.createElement('button')
 
-    choice.setAttribute('class', 'list')
+    choice.setAttribute('class', 'list col s12')
     $removeButton.setAttribute('class', 'waves-effect waves-circle waves-light btn-floating secondary-content')
     $removeButton.setAttribute('id', 'remove')
 
@@ -44,20 +43,20 @@ function renderList(choiceList, choice) {
   }
 }
 
-function clearList(choiceList, choice) {
-  for (var i = 0; i < choice.length; i++) {
-    choiceList.removeChild(choice[i])
+function clearList(choiceList, choices) {
+  for (var i = 0; i < choices.length; i++) {
+    choiceList.removeChild(choices[i])
   }
 }
 
 $submitButton.addEventListener('click', function (e) {
   var $choiceList = document.querySelector('.choice-list')
-  var $choice = document.querySelector('.list')
+  var $choice = document.createElement('li')
   renderList($choiceList, $choice)
 })
 
 $clearButton.addEventListener('click', function (e) {
   var $choiceList = document.querySelector('.choice-list')
-  var $choice = document.querySelectorAll('.list')
-  clearList($choiceList, $choice)
+  var $choices = document.querySelectorAll('.list')
+  clearList($choiceList, $choices)
 })
