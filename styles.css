@@ -58,11 +58,10 @@ body {
   padding: 30px 0;
 }
 
-.list {
+.choice {
   /* Box Model */
   border-radius: 10px;
   margin-bottom: 10px;
-  padding: 30px 90px 30px 20px;
 
   /* Typography */
   font-size: 15px;
@@ -73,7 +72,12 @@ body {
   color: black;
 
   /* Misc */
+  line-height: 40px;
   list-style: none;
+}
+
+.choice.col.s12 {
+  padding: 30px 90px 30px 20px;
 }
 
 .buttons {
@@ -104,11 +108,20 @@ body {
   background-color: #dd4230;
 }
 
+#randomize {
+  /* Box Model */
+  border-radius: 10px;
+  margin-right: 10px;
+
+  /* Visuals */
+  background-color: #f16b00;
+}
+
 #remove {
   /* Positioning */
   position: relative;
   right: -70px;
-  bottom: 10px;
+  bottom: 0;
 
   /* Visuals */
   background-color: #dd4230;

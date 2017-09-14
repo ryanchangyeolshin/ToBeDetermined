@@ -4,6 +4,7 @@ var Typed = require('typed.js')
 
 var $submitButton = document.querySelector('#submit')
 var $clearButton = document.querySelector('#clear')
+var $randomizeButton = document.querySelector('#randomize')
 
 var header = new Typed('.header', {
   strings: ["Let's grab: McDonalds", "Let's grab: Burger King", "Let's grab: Pizza Hut", 'To Be Determined...'],
@@ -19,48 +20,82 @@ var slogan = new Typed('.slogan', {
   showCursor: false
 })
 
-function renderList(choiceList, choice) {
+function renderList($unorderedList, $list) {
   var $userChoice = document.querySelector('#user-choice')
   var $userName = document.querySelector('#user')
   if ($userChoice.value !== '' && $userName.value !== '') {
-    choice = document.createElement('li')
     var $removeButton = document.createElement('button')
 
-    choice.setAttribute('class', 'list')
     $removeButton.setAttribute('class', 'waves-effect waves-circle waves-light btn-floating secondary-content')
     $removeButton.setAttribute('id', 'remove')
 
-    choice.textContent = $userChoice.value
+    $list.textContent = $userChoice.value
     $removeButton.textContent = 'X'
 
     $userChoice.value = ''
     $userName.value = ''
 
-    choiceList.appendChild(choice)
-    choice.appendChild($removeButton)
+    $unorderedList.appendChild($list)
+    $list.appendChild($removeButton)
 
     $removeButton.addEventListener('click', function (e) {
-      choiceList.removeChild(choice)
+      $list.setAttribute('class', 'choice col s12 animated fadeOut')
+      setTimeout(function () {
+        $unorderedList.removeChild($list)
+      }, 1000)
     })
   }
 }
 
-function clearList(choiceList, choice) {
-  for (var i = 0; i < choice.length; i++) {
-    choiceList.removeChild(choice[i])
+function clearList($unorderedList, $lists) {
+  for (var i = 0; i < $lists.length; i++) {
+    $lists[i].setAttribute('class', 'choice col s12 animated fadeOut')
   }
+  setTimeout(function () {
+    for (var i = 0; i < $lists.length; i++) {
+      $unorderedList.removeChild($lists[i])
+    }
+  }, 1000)
+}
+
+function randomizeList($unorderedList, $lists) {
+  var index = Math.round(Math.random() * ($lists.length - 1))
+
+  for (var i = 0; i < $lists.length; i++) {
+    if (index !== i) {
+      $lists[i].setAttribute('class', 'choice col s12 animated fadeOut')
+    }
+  }
+
+  setTimeout(function () {
+    for (var i = 0; i < $lists.length; i++) {
+      if (index !== i) {
+        $unorderedList.removeChild($lists[i])
+      }
+    }
+  }, 1000)
 }
 
 $submitButton.addEventListener('click', function (e) {
   var $choiceList = document.querySelector('.choice-list')
-  var $choice = document.querySelector('.list')
+  var $choice = document.createElement('li')
+  $choice.setAttribute('class', 'choice col s12 animated bounceInUp')
   renderList($choiceList, $choice)
 })
 
 $clearButton.addEventListener('click', function (e) {
   var $choiceList = document.querySelector('.choice-list')
-  var $choice = document.querySelectorAll('.list')
-  clearList($choiceList, $choice)
+  var $choices = document.querySelectorAll('.choice')
+  clearList($choiceList, $choices)
+})
+
+$randomizeButton.addEventListener('click', function (e) {
+  var $choiceList = document.querySelector('.choice-list')
+  var $choices = document.querySelectorAll('.choice')
+
+  if ($choices.length > 1) {
+    randomizeList($choiceList, $choices)
+  }
 })
 
 },{"typed.js":2}],2:[function(require,module,exports){
