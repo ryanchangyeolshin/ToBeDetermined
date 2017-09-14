@@ -126,3 +126,7 @@ body {
   /* Visuals */
   background-color: #dd4230;
 }
+
+.hidden {
+  display: none;
+}
