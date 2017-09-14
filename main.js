@@ -38,7 +38,7 @@ function renderList($unorderedList, $list) {
     $list.appendChild($removeButton)
 
     $removeButton.addEventListener('click', function (e) {
-      $list.setAttribute('class', 'choice animated fadeOut')
+      $list.setAttribute('class', 'choice col s12 animated fadeOut')
       setTimeout(function () {
         $unorderedList.removeChild($list)
       }, 1000)
@@ -48,7 +48,7 @@ function renderList($unorderedList, $list) {
 
 function clearList($unorderedList, $lists) {
   for (var i = 0; i < $lists.length; i++) {
-    $lists[i].setAttribute('class', 'choice animated fadeOut')
+    $lists[i].setAttribute('class', 'choice col s12 animated fadeOut')
   }
   setTimeout(function () {
     for (var i = 0; i < $lists.length; i++) {
@@ -62,7 +62,7 @@ function randomizeList($unorderedList, $lists) {
 
   for (var i = 0; i < $lists.length; i++) {
     if (index !== i) {
-      $lists[i].setAttribute('class', 'choice animated fadeOut')
+      $lists[i].setAttribute('class', 'choice col s12 animated fadeOut')
     }
   }
 

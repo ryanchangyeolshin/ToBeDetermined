@@ -62,7 +62,6 @@ body {
   /* Box Model */
   border-radius: 10px;
   margin-bottom: 10px;
-  padding: 30px 90px 30px 20px !important;
 
   /* Typography */
   font-size: 15px;
@@ -75,7 +74,10 @@ body {
   /* Misc */
   line-height: 40px;
   list-style: none;
-  animation-name: bounceInUp;
+}
+
+.choice.col.s12 {
+  padding: 30px 90px 30px 20px;
 }
 
 .buttons {
