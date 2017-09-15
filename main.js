@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-var Typed = require('typed.js')
-
+/* eslint-disable no-undef */
 var decisionId = 0
 var choiceId = 0
 var decisions = []
@@ -24,29 +23,31 @@ var slogan = new Typed('.slogan', {
   showCursor: false
 })
 
-function saveDecisionData(id, winningChoice, winner, listOfChoices) {
-  var decisionObject = {}
-  decisionObject.id = id
-  decisionObject.winningChoice = winningChoice
-  decisionObject.winner = winner
-  decisionObject.choices = listOfChoices
+function saveDecision(id, winningChoice, winner, listOfChoices) {
+  var decision = {
+    id: id,
+    winningChoice: winningChoice,
+    winner: winner,
+    choices: listOfChoices
+  }
 
-  decisions.push(decisionObject)
+  decisions.push(decision)
   decisionId++
   choiceId = 0
 }
 
-function saveChoiceData(choice, author) {
-  var choiceObject = {}
-  choiceObject.id = 'c' + choiceId
-  choiceObject.choice = choice
-  choiceObject.author = author
+function saveChoice(userChoice, user) {
+  var choice = {
+    id: 'c' + choiceId,
+    choice: userChoice,
+    author: user
+  }
 
-  choices.push(choiceObject)
+  choices.push(choice)
   choiceId++
 }
 
-function findChoiceData(list, id) {
+function findChoice(list, id) {
   var parsedId = parseInt(id)
   for (var i = 0; i < list.length; i++) {
     if (list[i].id === 'c' + parsedId) {
@@ -55,36 +56,47 @@ function findChoiceData(list, id) {
   }
 }
 
-function renderList($unorderedList, $list) {
-  var $userChoice = document.querySelector('#user-choice')
-  var $userName = document.querySelector('#user')
+function createChoice() {
+  var $choice = document.createElement('li')
+  $choice.setAttribute('class', 'choice col s12 animated bounceInUp')
+  $choice.setAttribute('data-id', choiceId)
+  return $choice
+}
+
+function createRemoveButton($list) {
+  var $unorderedList = document.querySelector('.choice-list')
+  var $removeButton = document.createElement('button')
+
+  $removeButton.setAttribute('class', 'waves-effect waves-circle waves-light btn-floating secondary-content')
+  $removeButton.setAttribute('id', 'remove')
+  $removeButton.setAttribute('data-id', choiceId)
+
+  $removeButton.textContent = 'X'
+
+  $removeButton.addEventListener('click', function (e) {
+    choices.pop(findChoice(choices, e.target.getAttribute('data-id')))
+    $list.setAttribute('class', 'choice col s12 animated fadeOut')
+    setTimeout(function () {
+      $unorderedList.removeChild($list)
+    }, 1000)
+  })
+  return $removeButton
+}
+
+function clearUserInput($userChoice, $userName) {
+  $userChoice.value = ''
+  $userName.value = ''
+}
+
+function returnChoiceWithAttributes($list, $userChoice, $userName) {
   if ($userChoice.value !== '' && $userName.value !== '') {
-    var $removeButton = document.createElement('button')
 
     $list.setAttribute('data-winner', $userName.value)
-    $removeButton.setAttribute('class', 'waves-effect waves-circle waves-light btn-floating secondary-content')
-    $removeButton.setAttribute('id', 'remove')
-    $removeButton.setAttribute('data-id', choiceId)
-
     $list.textContent = $userChoice.value
-    $removeButton.textContent = 'X'
+    $list.appendChild(createRemoveButton($list))
 
-    $unorderedList.appendChild($list)
-    $list.appendChild($removeButton)
-
-    saveChoiceData($userChoice.value, $userName.value)
-
-    $userChoice.value = ''
-    $userName.value = ''
-
-    $removeButton.addEventListener('click', function (e) {
-      choices.pop(findChoiceData(choices, e.target.getAttribute('data-id')))
-
-      $list.setAttribute('class', 'choice col s12 animated fadeOut')
-      setTimeout(function () {
-        $unorderedList.removeChild($list)
-      }, 1000)
-    })
+    saveChoice($userChoice.value, $userName.value)
+    return $list
   }
 }
 
@@ -99,26 +111,27 @@ function clearList($unorderedList, $lists) {
   }, 1000)
 }
 
-function randomizeList($unorderedList, $lists) {
-  var index = Math.round(Math.random() * ($lists.length - 1))
+function returnRandomChoice($unorderedList, $lists) {
+  var randomIndex = Math.round(Math.random() * ($lists.length - 1))
 
   for (var i = 0; i < $lists.length; i++) {
-    if (index !== i) {
+    if (randomIndex !== i) {
       $lists[i].setAttribute('class', 'choice col s12 animated fadeOut')
     }
     else {
+      var $winningElement = $lists[i]
       var id = $lists[i].getAttribute('data-id')
       var winningChoice = $lists[i].textContent
       var winner = $lists[i].getAttribute('data-winner')
-      saveDecisionData(id, winningChoice, winner, choices)
+      saveDecision(id, winningChoice, winner, choices)
     }
   }
 
-  $submitButton.setAttribute('class', 'hidden waves-effect waves-light btn-large')
+  $submitButton.setAttribute('class', 'hidden')
 
   setTimeout(function () {
     for (var i = 0; i < $lists.length; i++) {
-      if (index !== i) {
+      if (randomrandomIndex !== i) {
         $unorderedList.removeChild($lists[i])
       }
     }
@@ -127,10 +140,11 @@ function randomizeList($unorderedList, $lists) {
 
 $submitButton.addEventListener('click', function (e) {
   var $choiceList = document.querySelector('.choice-list')
-  var $choice = document.createElement('li')
-  $choice.setAttribute('class', 'choice col s12 animated bounceInUp')
-  $choice.setAttribute('data-id', choiceId)
-  renderList($choiceList, $choice)
+  var $choice = createChoice()
+  var $userChoice = document.querySelector('#user-choice')
+  var $userName = document.querySelector('#user')
+  $choiceList.appendChild(returnChoiceWithAttributes($choice, $userChoice, $userName))
+  clearUserInput($userChoice, $userName)
 })
 
 $clearButton.addEventListener('click', function (e) {
@@ -146,6 +160,6 @@ $randomizeButton.addEventListener('click', function (e) {
   var $choices = document.querySelectorAll('.choice')
 
   if ($choices.length > 1) {
-    randomizeList($choiceList, $choices)
+    returnRandomChoice($choiceList, $choices)
   }
 })
