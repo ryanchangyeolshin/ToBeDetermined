@@ -23,14 +23,6 @@ function createChoiceInfo($userChoiceInput, $userNameInput) {
   }
 }
 
-function renderChoices(data) {
-  var $choices = []
-  for (var i = 0; i < data.length; i++) {
-    $choices.push(data[i].htmlElement)
-  }
-  return $choices
-}
-
 function fadeOutAllChoices($choicesList) {
   var $choices = $choicesList.children
   for (var i = 0; i < $choices.length; i++) {
