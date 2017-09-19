@@ -20,16 +20,43 @@ body {
 
   /* Visuals */
   background-color: #3376dc;
+}
+
+#logo {
+  /* Positioning */
+  height: 120px;
+
+  /* Visuals */
   color: white;
 }
 
-h5 {
+div .form {
+  /* Box Model */
+  border-radius: 10px;
+}
+
+ul .card-panel {
+  /* Box Model */
+  border-radius: 10px;
+}
+
+.choice {
+  letter-spacing: normal;
+}
+
+input {
+  /* Visuals */
   color: black;
 }
 
-.introduction {
-  /* Positioning */
-  height: 120px;
+.buttons button {
+  /* Box Model */
+  border-radius: 10px;
+}
+
+.hidden {
+  /* Box Model */
+  display: none;
 }
 
 #clear {
@@ -44,6 +71,8 @@ h5 {
 
 #remove {
   /* Positioning */
+  position: relative;
+  top: -17px;
   float: right;
 
   /* Box Model */
