@@ -2,41 +2,42 @@
 var choices = []
 var choiceId = 0
 
-function choice(data) {
+function renderChoice(data) {
   if (data) {
     var $choice = document.createElement('li')
     $choice.setAttribute('class', 'choice card-panel animated bounceInUp')
     $choice.setAttribute('data-id', choiceId)
     $choice.textContent = data.userChoice
+    var $removeButton = renderRemoveButton()
+    $choice.appendChild($removeButton)
     return $choice
   }
 }
 
-function createChoiceInfo($userChoiceInput, $userNameInput) {
-  if ($userChoiceInput.value && $userNameInput.value) {
-    var choiceInfo = {
+function createChoice($userChoice, $author) {
+  if ($userChoice.value && $author.value) {
+    var choice = {
       id: choiceId,
-      userChoice: $userChoiceInput.value,
-      userName: $userNameInput.value
+      userChoice: $userChoice.value,
+      userName: $author.value
     }
-    return choiceInfo
+    return choice
   }
 }
 
-function fadeOutAllChoices($choicesList) {
-  var $choices = $choicesList.children
-  for (var i = 0; i < $choices.length; i++) {
-    $choices[i].setAttribute('class', 'choice card-panel animated fadeOut')
+function fadeOutAllChoices($choices) {
+  for (var i = 0; i < $choices.children.length; i++) {
+    $choices.children[i].setAttribute('class', 'choice card-panel animated fadeOut')
   }
 }
 
-function clearAllChoices($choicesList) {
-  while ($choicesList.firstChild) {
-    $choicesList.removeChild($choicesList.firstChild)
+function clearAllChoices($choices) {
+  while ($choices.firstChild) {
+    $choices.removeChild($choices.firstChild)
   }
 }
 
-function createRemoveButton() {
+function renderRemoveButton() {
   var $removeButton = document.createElement('button')
   $removeButton.setAttribute('class', 'btn-floating btn-large waves-effect waves-light red')
   $removeButton.setAttribute('id', 'remove')
@@ -45,10 +46,10 @@ function createRemoveButton() {
   return $removeButton
 }
 
-function removeChoice($choicesList, $choice) {
+function removeChoice($choices, $choice) {
   $choice.setAttribute('class', 'choice card-panel animated fadeOut')
   setTimeout(function () {
-    $choicesList.removeChild($choice)
+    $choices.removeChild($choice)
   }, 1000)
 }
 
@@ -59,7 +60,7 @@ function randomNumber(data) {
   return number
 }
 
-function renderDecision(data, number) {
+function createDecision(data, number) {
   for (var i = 0; i < data.length; i++) {
     if (data[i].id === number) {
       var decision = {
@@ -104,41 +105,46 @@ function enableButton($button) {
   }
 }
 
-function clearUserInput($userChoiceInput, $userNameInput) {
-  $userChoiceInput.value = ''
-  $userNameInput.value = ''
+function clearUserInput($userChoice, $author) {
+  $userChoice.value = ''
+  $author.value = ''
 }
 
 var $submitButton = document.querySelector('#submit')
 $submitButton.addEventListener('click', function (e) {
   e.preventDefault()
-  var $userChoiceInput = document.querySelector('#user-choice')
-  var $userNameInput = document.querySelector('#user-name')
-  var choiceInfo = createChoiceInfo($userChoiceInput, $userNameInput)
-  if (choiceInfo) {
-    choices.push(choiceInfo)
-    var $choice = choice(choiceInfo)
-    var $removeButton = createRemoveButton()
-    $choice.appendChild($removeButton)
-    var $choicesList = document.querySelector('#choices-list')
-    $choicesList.appendChild($choice)
+  var choice = createChoice(
+    document.querySelector('#choice'),
+    document.querySelector('#author')
+  )
+
+  if (choice) {
+    choices.push(choice)
+    var $choice = renderChoice(choice)
+    var $choices = document.querySelector('#choices')
+    $choices.appendChild($choice)
     choiceId++
   }
-  clearUserInput($userChoiceInput, $userNameInput)
+
+  clearUserInput(
+    document.querySelector('#choice'),
+    document.querySelector('#author')
+  )
 })
 
 var $clearButton = document.querySelector('#clear')
 $clearButton.addEventListener('click', function (e) {
   e.preventDefault()
-  enableButton($submitButton)
-  enableButton($randomizeButton)
   choices = []
   choiceId = 0
-  var $choicesList = document.querySelector('#choices-list')
-  fadeOutAllChoices($choicesList)
+  var $choices = document.querySelector('#choices')
+  fadeOutAllChoices($choices)
   setTimeout(function () {
-    clearAllChoices($choicesList)
+    clearAllChoices($choices)
   }, 1000)
+
+  enableButton($submitButton)
+  enableButton($randomizeButton)
 })
 
 var $randomizeButton = document.querySelector('#randomize')
@@ -146,8 +152,9 @@ $randomizeButton.addEventListener('click', function (e) {
   e.preventDefault()
   if (choices.length > 1) {
     var randomNum = randomNumber(choices)
-    var decision = renderDecision(choices, randomNum)
+    var decision = createDecision(choices, randomNum)
     fadeOutOtherChoices(decision)
+
     var $removeButton = document.querySelectorAll('#remove')[decision.winningId]
     disableButton($removeButton)
     disableButton($submitButton)
@@ -155,19 +162,19 @@ $randomizeButton.addEventListener('click', function (e) {
   }
 })
 
-var $choicesList = document.querySelector('#choices-list')
-$choicesList.addEventListener('click', function (e) {
+var $choices = document.querySelector('#choices')
+$choices.addEventListener('click', function (e) {
   if (e.target.getAttribute('id') === 'remove') {
     var $choice = e.target.closest('.choice')
     var choiceIndex = $choice.getAttribute('data-id')
     choices.splice(choiceIndex, 1)
-    removeChoice($choicesList, $choice)
+    removeChoice($choices, $choice)
   }
 })
 
 var Typed = require('typed.js')
 
-var header = new Typed('.app-header', {
+var header = new Typed('.site-name', {
   strings: ["Let's grab: McDonalds", "Let's grab: Burger King", "Let's grab: Pizza Hut", 'To Be Determined...'],
   typeSpeed: 50,
   backSpeed: 50,
@@ -175,7 +182,7 @@ var header = new Typed('.app-header', {
   showCursor: false
 })
 
-var slogan = new Typed('.app-slogan', {
+var slogan = new Typed('.slogan', {
   strings: ["^10000 Can't decide? Let us decide."],
   typeSpeed: 80,
   showCursor: false
