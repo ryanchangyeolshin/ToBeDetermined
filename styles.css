@@ -54,6 +54,11 @@ input {
   border-radius: 10px;
 }
 
+.hidden {
+  /* Box Model */
+  display: none;
+}
+
 #clear {
   /* Visuals */
   background-color: #dd4230;
