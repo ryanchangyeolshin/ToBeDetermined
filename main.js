@@ -7,19 +7,19 @@ function renderChoice(data) {
     var $choice = document.createElement('li')
     $choice.setAttribute('class', 'choice card-panel animated bounceInUp')
     $choice.setAttribute('data-id', choiceId)
-    $choice.textContent = data.userChoice
+    $choice.textContent = data.choice
     var $removeButton = renderRemoveButton()
     $choice.appendChild($removeButton)
     return $choice
   }
 }
 
-function createChoice($userChoice, $author) {
-  if ($userChoice.value && $author.value) {
+function createChoice($choice, $author) {
+  if ($choice.value && $author.value) {
     var choice = {
       id: choiceId,
-      userChoice: $userChoice.value,
-      userName: $author.value
+      choice: $choice.value,
+      author: $author.value
     }
     return choice
   }
@@ -65,7 +65,7 @@ function createDecision(data, number) {
     if (data[i].id === number) {
       var decision = {
         winningId: data[i].id,
-        winningChoice: data[i].userChoice,
+        winningChoice: data[i].choice,
         winner: data[i].userName,
         choices: data
       }
@@ -105,8 +105,8 @@ function enableButton($button) {
   }
 }
 
-function clearUserInput($userChoice, $author) {
-  $userChoice.value = ''
+function clearUserInput($choice, $author) {
+  $choice.value = ''
   $author.value = ''
 }
 
