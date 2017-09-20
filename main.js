@@ -72,15 +72,13 @@ function randomNumber(data) {
 
 function createDecision(data, number) {
   for (var i = 0; i < data.length; i++) {
-    if (data[i].id === number) {
-      var decision = {
-        winningId: data[i].id,
-        winningChoice: data[i].choice,
-        winner: data[i].userName,
-        choices: data
-      }
-      return decision
+    var decision = {
+      winningId: data[i].id,
+      winningChoice: data[i].choice,
+      winner: data[i].userName,
+      choices: data
     }
+    return decision
   }
 }
 
