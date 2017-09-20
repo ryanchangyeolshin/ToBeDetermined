@@ -233,7 +233,7 @@ $choices.addEventListener('click', function (e) {
 var Typed = require('typed.js')
 
 var header = new Typed('.site-name', {
-  strings: ["Let's grab: McDonalds", "Let's grab: Burger King", "Let's grab: Pizza Hut", 'To Be Determined...'],
+  strings: ["Let's grab: McDonalds", "Let's grab: Taco Bell", "Let's grab: Pizza Hut", 'To Be Determined...'],
   typeSpeed: 50,
   backSpeed: 50,
   smartBackSpace: true,
