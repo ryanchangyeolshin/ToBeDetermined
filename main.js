@@ -7,6 +7,7 @@ function renderChoice(data) {
     var $choice = document.createElement('li')
     $choice.setAttribute('class', 'choice card-panel animated bounceInUp')
     $choice.setAttribute('data-id', choiceId)
+    $choice.setAttribute('data-author', data.author)
     $choice.textContent = data.choice
     var $removeButton = renderRemoveButton()
     $choice.appendChild($removeButton)
@@ -27,7 +28,12 @@ function createChoice($choice, $author) {
 
 function fadeOutAllChoices($choices) {
   for (var i = 0; i < $choices.children.length; i++) {
-    $choices.children[i].setAttribute('class', 'choice card-panel animated fadeOut')
+    if ($choices.children[i].getAttribute('class') === 'card-panel row winner animated bounceInUp') {
+      $choices.children[i].setAttribute('class', 'card-panel row winner animated fadeOut')
+    }
+    else {
+      $choices.children[i].setAttribute('class', 'choice card-panel animated fadeOut')
+    }
   }
 }
 
@@ -41,7 +47,11 @@ function renderRemoveButton() {
   var $removeButton = document.createElement('button')
   $removeButton.setAttribute('class', 'btn-floating btn-large waves-effect waves-light red')
   $removeButton.setAttribute('id', 'remove')
-  $removeButton.textContent = 'X'
+
+  var $removeButtonIcon = document.createElement('i')
+  $removeButtonIcon.setAttribute('class', 'fa fa-trash')
+  $removeButtonIcon.setAttribute('aria-hidden', 'true')
+  $removeButton.appendChild($removeButtonIcon)
 
   return $removeButton
 }
@@ -62,15 +72,13 @@ function randomNumber(data) {
 
 function createDecision(data, number) {
   for (var i = 0; i < data.length; i++) {
-    if (data[i].id === number) {
-      var decision = {
-        winningId: data[i].id,
-        winningChoice: data[i].choice,
-        winner: data[i].userName,
-        choices: data
-      }
-      return decision
+    var decision = {
+      winningId: data[i].id,
+      winningChoice: data[i].choice,
+      winner: data[i].userName,
+      choices: data
     }
+    return decision
   }
 }
 
@@ -82,7 +90,7 @@ function fadeOutOtherChoices(data) {
       $choices[i].setAttribute('class', 'choice card-panel animated fadeOut')
     }
     else {
-      $choices[i].setAttribute('class', 'choice card-panel')
+      $choices[i].setAttribute('class', 'choice winner card-panel')
     }
   }
 }
@@ -103,6 +111,46 @@ function enableButton($button) {
   else {
     $button.setAttribute('class', 'waves-effect waves-light btn-large')
   }
+}
+
+function renderGif() {
+  var $justDoItGif = document.createElement('iframe')
+  $justDoItGif.setAttribute('src', 'https://giphy.com/embed/b7f0X8Okk1uyk')
+  $justDoItGif.setAttribute('width', '480')
+  $justDoItGif.setAttribute('height', '270')
+  $justDoItGif.setAttribute('frameBorder', '0')
+  $justDoItGif.setAttribute('class', 'giphy-embed col s12')
+
+  return $justDoItGif
+}
+
+function renderWinner(winner) {
+  var $winner = document.createElement('h5')
+  $winner.setAttribute('class', 'card-title col s8 offset-s2')
+  $winner.textContent = winner + ' is the winner!'
+  return $winner
+}
+
+function renderWinningChoice(winningChoice) {
+  var $winningChoice = document.createElement('h6')
+  $winningChoice.setAttribute('class', 'col s8 offset-s2')
+  $winningChoice.textContent = 'So therefore, the decision is ' + winningChoice
+  return $winningChoice
+}
+
+function renderResult(winningChoice, winner) {
+  var $result = document.createElement('li')
+  $result.setAttribute('class', 'card-panel row winner animated bounceInUp')
+
+  var $winner = renderWinner(winner)
+  var $winningChoice = renderWinningChoice(winningChoice)
+  var $justDoItGif = renderGif()
+
+  $result.appendChild($winner)
+  $result.appendChild($winningChoice)
+  $result.appendChild($justDoItGif)
+
+  return $result
 }
 
 function clearUserInput($choice, $author) {
@@ -155,6 +203,9 @@ $randomizeButton.addEventListener('click', function (e) {
     var decision = createDecision(choices, randomNum)
     fadeOutOtherChoices(decision)
 
+    var $winningChoice = document.querySelector('.winner')
+    $winningChoice.setAttribute('class', 'choice winner card-panel animated pulse infinite')
+
     var $removeButton = document.querySelectorAll('#remove')[decision.winningId]
     disableButton($removeButton)
     disableButton($submitButton)
@@ -164,18 +215,25 @@ $randomizeButton.addEventListener('click', function (e) {
 
 var $choices = document.querySelector('#choices')
 $choices.addEventListener('click', function (e) {
-  if (e.target.getAttribute('id') === 'remove') {
+  if (e.target.getAttribute('class') === 'fa fa-trash') {
     var $choice = e.target.closest('.choice')
     var choiceIndex = $choice.getAttribute('data-id')
     choices.splice(choiceIndex, 1)
     removeChoice($choices, $choice)
+  }
+  else if (e.target.getAttribute('class') === 'choice winner card-panel animated pulse infinite') {
+    clearAllChoices($choices)
+    var winningChoice = e.target.textContent
+    var winner = e.target.getAttribute('data-author')
+    var $result = renderResult(winningChoice, winner)
+    $choices.appendChild($result)
   }
 })
 
 var Typed = require('typed.js')
 
 var header = new Typed('.site-name', {
-  strings: ["Let's grab: McDonalds", "Let's grab: Burger King", "Let's grab: Pizza Hut", 'To Be Determined...'],
+  strings: ["Let's grab: McDonalds", "Let's grab: Taco Bell", "Let's grab: Pizza Hut", 'To Be Determined...'],
   typeSpeed: 50,
   backSpeed: 50,
   smartBackSpace: true,

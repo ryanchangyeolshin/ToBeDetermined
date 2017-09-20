@@ -22,6 +22,22 @@ body {
   background-color: #3376dc;
 }
 
+.site-name,
+.slogan {
+  /* Typography */
+  letter-spacing: 5px;
+}
+
+.site-name {
+  /* Typography */
+  font-weight: 700;
+}
+
+.slogan {
+  /* Typography */
+  font-weight: 400;
+}
+
 #logo {
   /* Positioning */
   height: 120px;
@@ -54,9 +70,25 @@ input {
   border-radius: 10px;
 }
 
-.hidden {
-  /* Box Model */
-  display: none;
+.winner {
+  /* Visuals */
+  background-color: #ffd800;
+}
+
+h5,
+h6 {
+  /* Typography */
+  text-align: center;
+}
+
+h5 {
+  /* Typography */
+  font-weight: 700;
+}
+
+h6 {
+  /* Typography */
+  letter-spacing: normal;
 }
 
 #clear {
