@@ -123,19 +123,6 @@ function fadeOutAllChoices($choices) {
   }
 }
 
-function fadeOutOtherChoices(data) {
-  var $choices = document.querySelectorAll('.choice')
-  for (var i = 0; i < $choices.length; i++) {
-    var choiceDataId = $choices[i].getAttribute('data-id')
-    if (choiceDataId !== data.winningId.toString()) {
-      $choices[i].setAttribute('class', 'choice card-panel animated fadeOut')
-    }
-    else {
-      $choices[i].setAttribute('class', 'choice winner card-panel')
-    }
-  }
-}
-
 function clearUserInput($choice, $author) {
   $choice.value = ''
   $author.value = ''
@@ -155,6 +142,5 @@ module.exports = {
   disableButton,
   enableButton,
   clearUserInput,
-  fadeOutAllChoices,
-  fadeOutOtherChoices
+  fadeOutAllChoices
 }

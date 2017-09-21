@@ -15,7 +15,6 @@ const disableButton = require('./functions.js').disableButton
 const enableButton = require('./functions.js').enableButton
 const clearUserInput = require('./functions.js').clearUserInput
 const fadeOutAllChoices = require('./functions.js').fadeOutAllChoices
-const fadeOutOtherChoices = require('./functions.js').fadeOutOtherChoices
 
 const window = require('./jsdom.js').window
 const document = window.document
