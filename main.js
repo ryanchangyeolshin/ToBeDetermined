@@ -76,7 +76,7 @@ function createDecision(data, number) {
       var decision = {
         winningId: data[i].id,
         winningChoice: data[i].choice,
-        winner: data[i].userName,
+        winner: data[i].author,
         choices: data
       }
       return decision
