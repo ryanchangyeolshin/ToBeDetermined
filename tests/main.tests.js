@@ -14,6 +14,8 @@ const renderResult = require('./functions.js').renderResult
 const disableButton = require('./functions.js').disableButton
 const enableButton = require('./functions.js').enableButton
 const clearUserInput = require('./functions.js').clearUserInput
+const fadeOutAllChoices = require('./functions.js').fadeOutAllChoices
+const fadeOutOtherChoices = require('./functions.js').fadeOutOtherChoices
 
 const window = require('./jsdom.js').window
 const document = window.document
@@ -107,6 +109,37 @@ describe('Renders', function () {
     expect($result).to.contain('h5')
     expect($result).to.contain('h6')
     expect($result).to.have.attribute('class', 'card-panel row winner animated bounceInUp')
+  })
+})
+
+describe('Fades out', function () {
+  var choices = [
+    {
+      id: 0,
+      choice: 'Basketball',
+      author: 'Ryan'
+    },
+    {
+      id: 1,
+      choice: 'Baseball',
+      author: 'Joe'
+    },
+    {
+      id: 2,
+      choice: 'Football',
+      author: 'Young'
+    }
+  ]
+  var $choices = document.querySelector('#choices')
+  for (var i = 0; i < choices.length; i++) {
+    $choices.appendChild(renderChoice(choices[i]))
+  }
+  fadeOutAllChoices($choices)
+
+  it('all of the choices.', function () {
+    expect($choices.children[0]).to.have.attribute('class', 'choice card-panel animated fadeOut')
+    expect($choices.children[1]).to.have.attribute('class', 'choice card-panel animated fadeOut')
+    expect($choices.children[2]).to.have.attribute('class', 'choice card-panel animated fadeOut')
   })
 })
 

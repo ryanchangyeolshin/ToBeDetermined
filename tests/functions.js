@@ -112,6 +112,30 @@ function enableButton($button) {
   }
 }
 
+function fadeOutAllChoices($choices) {
+  for (var i = 0; i < $choices.children.length; i++) {
+    if ($choices.children[i].getAttribute('class') === 'card-panel row winner animated bounceInUp') {
+      $choices.children[i].setAttribute('class', 'card-panel row winner animated fadeOut')
+    }
+    else {
+      $choices.children[i].setAttribute('class', 'choice card-panel animated fadeOut')
+    }
+  }
+}
+
+function fadeOutOtherChoices(data) {
+  var $choices = document.querySelectorAll('.choice')
+  for (var i = 0; i < $choices.length; i++) {
+    var choiceDataId = $choices[i].getAttribute('data-id')
+    if (choiceDataId !== data.winningId.toString()) {
+      $choices[i].setAttribute('class', 'choice card-panel animated fadeOut')
+    }
+    else {
+      $choices[i].setAttribute('class', 'choice winner card-panel')
+    }
+  }
+}
+
 function clearUserInput($choice, $author) {
   $choice.value = ''
   $author.value = ''
@@ -130,5 +154,7 @@ module.exports = {
   renderResult,
   disableButton,
   enableButton,
-  clearUserInput
+  clearUserInput,
+  fadeOutAllChoices,
+  fadeOutOtherChoices
 }
