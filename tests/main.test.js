@@ -131,8 +131,16 @@ describe('Fades out', function () {
       author: 'Young'
     }
   ]
+  var $choices = document.createElement('ul')
+  for (var i = 0; i < choices.length; i++) {
+    $choices.appendChild(renderChoice(choices[i]))
+  }
+  fadeOutAllChoices($choices)
 
   it('all of the choices.', function () {
+    for (var i = 0; i < $choices.children.length; i++) {
+      expect($choices.children[i]).to.have.attribute('class', 'choice card-panel animated fadeOut')
+    }
   })
 })
 
