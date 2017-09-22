@@ -6,7 +6,7 @@
     "lint:html": "htmlhint ./**/*.html",
     "lint:css": "stylelint ./**/*.css",
     "lint:js": "eslint ./**/*.js",
-    "test": "mocha ./tests/*.tests.js",
+    "test": "",
     "precommit": "npm test",
     "bundle": "browserify main.js -o bundle.js",
     "watch": "watchify main.js -o bundle.js"
