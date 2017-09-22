@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 var choices = []
 var choiceId = 0
 
@@ -231,8 +232,6 @@ $choices.addEventListener('click', function (e) {
     $choices.appendChild($result)
   }
 })
-
-var Typed = require('typed.js')
 
 var header = new Typed('.site-name', {
   strings: ["Let's grab: McDonalds", "Let's grab: Taco Bell", "Let's grab: Pizza Hut", 'To Be Determined...'],
