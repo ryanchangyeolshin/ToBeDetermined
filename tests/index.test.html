@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <title>Tests</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.5.3/mocha.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.2/chai.js"></script>
+  <script src="../node_modules/chai-dom/chai-dom.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.5.3/mocha.css" />
+</head>
+<body>
+  <script>
+    // Set up Chai and Mocha.
+    window.expect = chai.expect;
+    mocha.setup("bdd");
+
+    // Run tests on window load.
+    window.onload = function () {
+      mocha.run();
+    };
+  </script>
+  <div id="mocha"></div>
+  <script type="text/javascript" src="../main.js"></script>
+  <script type="text/javascript" src="main.test.js"></script>
+</body>
+</html>
