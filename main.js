@@ -220,9 +220,8 @@ $choices.addEventListener('click', function (e) {
   }
   else if (e.target.getAttribute('class') === 'choice winner yellow accent-4 card-panel animated pulse infinite') {
     clearAllChoices($choices)
-    var winningChoice = e.target.textContent
     var winner = e.target.getAttribute('data-author')
-    var $result = renderResult(winningChoice, winner)
+    var $result = renderResult(winner)
     $choices.appendChild($result)
   }
 })
