@@ -93,12 +93,6 @@ describe('Renders', function () {
     expect($justDoItGif).to.have.attribute('class', 'giphy-embed col s12')
   })
 
-  it('a winning choice.', function () {
-    var $winningChoice = renderWinningChoice('Baseball')
-    expect($winningChoice).to.have.attribute('class', 'col s8 offset-s2')
-    expect($winningChoice.textContent).to.equal('So therefore, the decision is Baseball')
-  })
-
   it('a winner.', function () {
     var $winner = renderWinner('Ryan')
     expect($winner).to.have.attribute('class', 'card-title col s8 offset-s2')

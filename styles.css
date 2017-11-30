@@ -3,114 +3,21 @@
   margin: 0;
 }
 
-body {
-  /* Typography */
-  font-family: 'Ubuntu', sans-serif;
-
-  /* Visuals */
-  background-color: #d5d4d5;
-}
-
 .container {
-  /* Box Model */
-  border-radius: 30px;
   margin-top: 100px;
-
-  /* Typography */
-  letter-spacing: 5px;
-
-  /* Visuals */
-  background-color: #3376dc;
-}
-
-.site-name,
-.slogan {
-  /* Typography */
-  letter-spacing: 5px;
-}
-
-.site-name {
-  /* Typography */
-  font-weight: 700;
-}
-
-.slogan {
-  /* Typography */
-  font-weight: 400;
 }
 
 #logo {
-  /* Positioning */
   height: 120px;
-
-  /* Visuals */
-  color: white;
-}
-
-div .form {
-  /* Box Model */
-  border-radius: 10px;
-}
-
-ul .card-panel {
-  /* Box Model */
-  border-radius: 10px;
-}
-
-.choice {
-  letter-spacing: normal;
-}
-
-input {
-  /* Visuals */
-  color: black;
-}
-
-.buttons button {
-  /* Box Model */
-  border-radius: 10px;
-}
-
-.winner {
-  /* Visuals */
-  background-color: #ffd800;
 }
 
 h5,
 h6 {
-  /* Typography */
   text-align: center;
 }
 
-h5 {
-  /* Typography */
-  font-weight: 700;
-}
-
-h6 {
-  /* Typography */
-  letter-spacing: normal;
-}
-
-#clear {
-  /* Visuals */
-  background-color: #dd4230;
-}
-
-#randomize {
-  /* Visuals */
-  background-color: #f16b00;
-}
-
 #remove {
-  /* Positioning */
   position: relative;
   top: -17px;
   float: right;
-
-  /* Box Model */
-  border-radius: 30px;
-
-  /* Visuals */
-  background-color: #dd4230;
 }
