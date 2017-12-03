@@ -17,24 +17,24 @@
     <link href="styles.css" rel="stylesheet" />
     <title>To Be Determined...</title>
   </head>
-  <body class="grey">
-    <div class="container grey lighten-2">
-      <div id="logo" class="row bold">
+  <body>
+    <div class="container deep-purple darken-3">
+      <div id="logo" class="row">
         <div class="col s8 offset-s2">
-          <h3 class="site-name center-align"></h3>
-          <h5 class="slogan center-align"></h5>
+          <h3 class="site-name center-align white-text"></h3>
+          <h5 class="slogan center-align white-text"></h5>
         </div>
       </div>
       <div id="option" class="row">
         <div class="col s8 offset-s2">
-          <div class="card-panel form">
+          <div class="form">
             <form>
               <div class="input-field">
-                <input id="choice" type="text" class="validate" maxlength="50" />
+                <input id="choice" type="text" class="validate white-text" maxlength="50" />
                 <label for="choice">Choice</label>
               </div>
               <div class="input-field">
-                <input id="author" type="text" name="user" class="validate" maxlength="50" />
+                <input id="author" type="text" name="user" class="validate white-text" maxlength="50" />
                 <label for="author">Author</label>
               </div>
               <div class="buttons center-align">
@@ -46,10 +46,16 @@
           </div>
         </div>
       </div>
-      <div class="col s8 offset-s2 row">
-        <ul id="choices" class="col s8 offset-s2 row"></ul>
+      <div class="row">
+        <ul id="choices" class="col s8 offset-s2"></ul>
       </div>
     </div>
+    <script src="./js/choice.js" type="text/javascript"></script>
+    <script src="./js/button.js" type="text/javascript"></script>
+    <script src="./js/clear-all-choices.js" type="text/javascript"></script>
+    <script src="./js/create-decision.js" type="text/javascript"></script>
+    <script src="./js/winner.js" type="text/javascript"></script>
+    <script src="./js/typed.js" type="text/javascript"></script>
     <script src="main.js" type="text/javascript"></script>
   </body>
 </html>
