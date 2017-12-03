@@ -8,7 +8,7 @@ A web application for indecisive people who want to be given a decision.
 
 ## How to use
 ### Option 1: Heroku
-
+https://tobedetermined.herokuapp.com/
 
 ### Option 2: Download Repo
 1. Under the <>Code tab, click on the releases tab and download the zip file for the most recent version.
